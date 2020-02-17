@@ -10,6 +10,7 @@ namespace MyFace.Models.View
 
         public PostsViewModel(IEnumerable<Post> posts)
         {
+            
             Posts = posts.Select(post => new PostViewModel(post));
         }
     }

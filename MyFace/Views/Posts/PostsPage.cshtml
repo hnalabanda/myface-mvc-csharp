@@ -2,25 +2,23 @@
 
 @{
     Layout = "_Layout";
-    
-      
-
-
-
+ 
 }
 <a  asp-controller="Posts" asp-action="CreatePostPage">Create a new post</a>
 <h1>MyFace Posts  </h1>
 <script type="text/javascript">let currentDate=new Date();document.write( currentDate.getDate()+"-"+currentDate.getMonth()+"-"+currentDate.getFullYear());</script> 
 <section>
-  @{
-      foreach (var post in Model.Posts)
-      {
-          <article>
-              <h2>Posted By @post.Message</h2>
-              <p> Para 1</p>
-          </article>
-      }
-  }
+    <p>Count @{ Model.Posts.Count();}</p>
+    @{
+        foreach (var post in Model.Posts)
+        {
+            <article>
+                <h2>Posted By @post.Message</h2>
+                <p> Para 1</p>
+                  <p>  <img src="/Images/like.png" height="50px"><img src="/Images/dislike.png" height="50px"/></p>
+            </article>
+        }
+    }
 </section>
 
 
