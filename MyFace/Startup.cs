@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
+using Microsoft.Extensions.Options;
 using MyFace.Repositories;
 
 namespace MyFace
@@ -17,12 +20,17 @@ namespace MyFace
 
         public IConfiguration Configuration { get; }
 
+        public static readonly ILoggerFactory
+            loggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MyFaceDbContext>(options => 
-                options.UseSqlite("Data Source=myface.db")
-            );
+            services.AddDbContext<MyFaceDbContext>(options =>
+            {
+                options.UseLoggerFactory(loggerFactory);
+                options.UseSqlite("Data Source=myface.db");
+            });
 
             services.AddControllersWithViews();
             

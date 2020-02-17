@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MyFace.Models.Request;
 using MyFace.Models.View;
 using MyFace.Repositories;

@@ -5,6 +5,25 @@ using MyFace.Models.Database;
 
 namespace MyFace.Models.View
 {
+    public class PostUserViewModel
+    {
+        private readonly User _user;
+
+        public PostUserViewModel(User user)
+        {
+            _user = user;
+        }
+        
+        public int Id => _user.Id;
+        public string FirstName => _user.FirstName;
+        public string LastName => _user.LastName;
+        public string DisplayName => $"{FirstName} {LastName}";
+        public string Username => _user.Username;
+        public string Email => _user.Email;
+        public string ProfileImageUrl => _user.ProfileImageUrl;
+        public string CoverImageUrl => _user.CoverImageUrl;
+    }
+    
     public class PostViewModel
     {
         private readonly Post _post;
@@ -12,13 +31,13 @@ namespace MyFace.Models.View
         public PostViewModel(Post post)
         {
             _post = post;
-            PostedBy = new UserViewModel(post.PostedBy);
+            PostedBy = new PostUserViewModel(post.User);
             LikedBy = post.Interactions
                 .Where(interaction => interaction.Type == InteractionType.LIKE)
-                .Select(interaction => new UserViewModel(interaction.User));
+                .Select(interaction => new PostUserViewModel(interaction.User));
             DislikedBy = post.Interactions
                 .Where(interaction => interaction.Type == InteractionType.DISLIKE)
-                .Select(interaction => new UserViewModel(interaction.User));
+                .Select(interaction => new PostUserViewModel(interaction.User));
         }
         
         public int Id => _post.Id;
@@ -26,8 +45,8 @@ namespace MyFace.Models.View
         public string ImageUrl => _post.ImageUrl;
         public DateTime PostedAt => _post.PostedAt;
         
-        public UserViewModel PostedBy { get; }
-        public IEnumerable<UserViewModel> LikedBy { get; }
-        public IEnumerable<UserViewModel> DislikedBy { get; }
+        public PostUserViewModel PostedBy { get; }
+        public IEnumerable<PostUserViewModel> LikedBy { get; }
+        public IEnumerable<PostUserViewModel> DislikedBy { get; }
     }
 }

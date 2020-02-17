@@ -14,7 +14,9 @@ namespace MyFace.Models.Database
         public string LastName { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
-        public IEnumerable<Post> Posts { get; set; } = new List<Post>();
-        public IEnumerable<Interaction> Interactions { get; set; } = new List<Interaction>();
+        public string ProfileImageUrl { get; set; }
+        public string CoverImageUrl { get; set; }
+        public ICollection<Post> Posts { get; set; } = new List<Post>();
+        public ICollection<Interaction> Interactions { get; set; } = new List<Interaction>();
     }
 }

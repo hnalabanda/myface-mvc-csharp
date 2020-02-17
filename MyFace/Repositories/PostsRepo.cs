@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using MyFace.Models.Database;
 using MyFace.Models.Request;
 
@@ -24,12 +25,17 @@ namespace MyFace.Repositories
         
         public IEnumerable<Post> GetAll()
         {
-            return _context.Posts;
+            return _context.Posts
+                .Include(p => p.User)
+                .Include(p => p.Interactions)
+                .ToList();
         }
 
         public Post GetById(int id)
         {
-            return _context.Posts.Single(post => post.Id == id);
+            return _context.Posts
+                .Include(p => p.User)
+                .Single(post => post.Id == id);
         }
 
         public void CreatePost(CreatePostRequestModel postModel, User postedBy)
@@ -39,7 +45,7 @@ namespace MyFace.Repositories
                 ImageUrl = postModel.ImageUrl,
                 Message = postModel.Message,
                 PostedAt = DateTime.Now,
-                PostedBy = postedBy,
+                User = postedBy,
             });
             _context.SaveChanges();
         }

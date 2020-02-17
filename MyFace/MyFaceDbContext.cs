@@ -13,9 +13,17 @@ namespace MyFace
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Post>().ToTable("Post");
-            modelBuilder.Entity<User>().ToTable("User");
-            modelBuilder.Entity<Interaction>().ToTable("Interaction");
+            modelBuilder.Entity<Post>()
+                .HasOne(p => p.User)
+                .WithMany(u => u.Posts)
+                .HasForeignKey(p => p.UserId)
+                .IsRequired();
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Interactions)
+                .WithOne(i => i.User);
+            modelBuilder.Entity<Interaction>()
+                .HasOne(i => i.Post)
+                .WithMany(p => p.Interactions);
         }
     }
 }

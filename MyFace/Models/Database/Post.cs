@@ -13,7 +13,8 @@ namespace MyFace.Models.Database
         public string Message { get; set; }
         public string ImageUrl { get; set; }
         public DateTime PostedAt { get; set; }
-        public User PostedBy { get; set; }
-        public IEnumerable<Interaction> Interactions { get; set; } = new List<Interaction>();
+        public int UserId { get; set; }
+        public User User { get; set; }
+        public ICollection<Interaction> Interactions { get; set; } = new List<Interaction>();
     }
 }
