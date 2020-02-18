@@ -9,20 +9,18 @@ namespace MyFace.Controllers
     public class PostsController : Controller
     {
         private readonly IPostsRepo _posts;
-        private readonly IUsersRepo _users;
         private readonly IInteractionsRepo _interactions;
 
-        public PostsController(IPostsRepo posts, IUsersRepo users, IInteractionsRepo interactions)
+        public PostsController(IPostsRepo posts, IInteractionsRepo interactions)
         {
             _posts = posts;
-            _users = users;
             _interactions = interactions;
         }
         
         [HttpGet("")]
-        public IActionResult PostsPage()
+        public IActionResult PostsPage(int pageNumber = 0, int pageSize = 10)
         {
-            var posts = _posts.GetAll();
+            var posts = _posts.GetAll(pageNumber, pageSize);
             var viewModel = new PostsViewModel(posts);
             return View(viewModel);
         }
@@ -36,18 +34,20 @@ namespace MyFace.Controllers
         [HttpPost("create")]
         public IActionResult CreatePost(CreatePostRequestModel newPost)
         {
-            var user = _users.GetById(newPost.UserId);
-            _posts.CreatePost(newPost, user);
+            if (!ModelState.IsValid)
+            {
+                return View("CreatePostPage", newPost);
+            }
+            
+            _posts.CreatePost(newPost);
             return RedirectToAction("PostsPage");
+
         }
 
         [HttpPost("{id}/add-interaction")]
         public IActionResult AddInteraction(int id, CreateInteractionRequestModel newInteraction)
         {
-            var post = _posts.GetById(id);
-            var user = _users.GetById(newInteraction.UserId);
-            _interactions.Create(newInteraction, post, user);
-
+            _interactions.Create(newInteraction, id);
             return RedirectToAction("PostsPage");
         }
     }

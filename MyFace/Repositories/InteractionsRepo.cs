@@ -6,7 +6,7 @@ namespace MyFace.Repositories
 {
     public interface IInteractionsRepo
     {
-        void Create(CreateInteractionRequestModel newInteraction, Post post, User user);
+        void Create(CreateInteractionRequestModel newInteraction, int postId);
     }
     
     public class InteractionsRepo : IInteractionsRepo
@@ -18,13 +18,13 @@ namespace MyFace.Repositories
             _context = context;
         }
         
-        public void Create(CreateInteractionRequestModel newInteraction, Post post, User user)
+        public void Create(CreateInteractionRequestModel newInteraction, int postId)
         {
             _context.Interactions.Add(new Interaction
             {
                 Type = newInteraction.InteractionType,
-                Post = post,
-                User = user,
+                PostId = postId,
+                UserId = newInteraction.UserId,
                 Date = DateTime.Now,
             });
             _context.SaveChanges();

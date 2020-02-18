@@ -8,7 +8,7 @@ namespace MyFace.Repositories
 {
     public interface IUsersRepo
     {
-        IEnumerable<User> GetAll();
+        IEnumerable<User> GetAll(int pageNumber, int pageSize);
         User GetById(int id);
         void Create(CreateUserRequestModel newUser);
     }
@@ -22,11 +22,14 @@ namespace MyFace.Repositories
             _context = context;
         }
         
-        public IEnumerable<User> GetAll()
+        public IEnumerable<User> GetAll(int pageNumber, int pageSize)
         {
             return _context.Users
                 .Include(u => u.Posts)
-                .Include(u => u.Interactions);
+                .Include(u => u.Interactions)
+                .OrderBy(u => u.Username)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
         }
 
         public User GetById(int id)
