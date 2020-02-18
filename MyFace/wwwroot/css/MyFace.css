@@ -1,0 +1,88 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+h1{
+    color:steelblue;
+    text-align: center;
+    margin-top: .5rem;
+}
+
+li{
+    padding: 10px;
+    color: white;
+}
+
+img {
+    max-width: 95vw;
+    max-height: 50vh;
+}
+
+nav {
+    background-color: navy;
+    color:white;
+    height: 60px;
+}
+
+
+.myface-banner{
+    display: flex;
+    list-style-type: none;}
+
+.myface-a {
+  
+    color: white;
+}
+.myface-body{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+.posts-menu {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.posts-menu a{
+    margin-left: 1rem;
+}
+
+.post-container {
+    text-align: center;
+}
+
+.post-container p{
+    text-align: center;
+    padding-bottom: .5em;
+}
+
+.post-likes {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: .5rem;
+}
+
+.likes-image {
+    width: 40px;
+    height: auto;
+}
+
+
+@media (min-width: 375px) {
+    img {
+        max-width: 70vw;
+    }
+}

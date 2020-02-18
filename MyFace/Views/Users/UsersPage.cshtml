@@ -3,3 +3,12 @@
 @{
     Layout = "_Layout";
 }
+@{
+    foreach (var post in Model.Users)
+    {
+        <article>
+            <p><b>Posted By:</b> @post.Id on @post.FirstName @post.LastName</p>
+       
+        </article>
+    }
+}

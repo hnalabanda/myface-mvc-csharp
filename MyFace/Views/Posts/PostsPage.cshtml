@@ -4,20 +4,26 @@
     Layout = "_Layout";
  
 }
-<a  asp-controller="Posts" asp-action="CreatePostPage">Create a new post</a>
+
 <h1>MyFace Posts  </h1>
-<script type="text/javascript">let currentDate=new Date();document.write( currentDate.getDate()+"-"+currentDate.getMonth()+"-"+currentDate.getFullYear());</script> 
-<section>
-    <p>Count @Model.Posts.Count()</p>
+
+<link rel="stylesheet" type="text/css" href="css/MyFace.css" media="screen" />
+<section class="posts-container">
+    <div class="posts-menu">
+         @Model.Posts.Count() Posts on <script type="text/javascript">let currentDate=new Date();document.write( currentDate.getDate()+"-"+currentDate.getMonth()+"-"+currentDate.getFullYear());</script>
+        <a asp-controller="Posts" asp-action="CreatePostPage">Create a new post</a>
+    </div>
     @{
         foreach (var post in Model.Posts)
         {
-            <article>
-            <p><b>Posted By:</b> @post.PostedBy.FirstName on @post.PostedBy.LastName @post.PostedAt</p>
-            <img src="@post.ImageUrl" width="500px"/>
-                       <p>@post.Message</p>
-                          
-                           <p> <img src="/Images/like.png" height="50px"><img src="/Images/dislike.png" height="50px"/></p>
+            <article class="post-container">
+            <p class="post-author"><b>Posted By:</b> @post.PostedBy.FirstName on @post.PostedBy.LastName @post.PostedAt</p>
+            <img src="@post.ImageUrl" />
+                       <p class="post-message">@post.Message</p>
+            <div class="post-likes">
+                <img class="likes-image" src="/Images/like.png">
+                <img class="likes-image" src="/Images/dislike.png"/>
+            </div>
             </article>
         }
     }
