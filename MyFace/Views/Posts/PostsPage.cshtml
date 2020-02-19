@@ -5,30 +5,50 @@
  
 }
 
-<h1>MyFace Posts  </h1>
+<h1 id="pageheading">MyFace Posts  </h1>
 
 <link rel="stylesheet" type="text/css" href="css/MyFace.css" media="screen" />
-<section class="posts-container">
-    <div class="posts-menu">
-         @Model.Posts.Count() Posts on <script type="text/javascript">let currentDate=new Date();document.write( currentDate.getDate()+"-"+currentDate.getMonth()+"-"+currentDate.getFullYear());</script>
-        <a asp-controller="Posts" asp-action="CreatePostPage">Create a new post</a>
-    </div>
+<script>
+function removePost(ele){
+   var index=ele.id.indexOf("-");
+    var elementID=ele.id.substring(index+1);
+
+var element=document.getElementById("post-"+elementID);
+  element.remove();
+  element=document.getElementById("img-"+elementID);
+    element.remove();
+    element=document.getElementById("message-"+elementID);
+      element.remove();
+      element=document.getElementById("postlike-"+elementID);
+        element.remove();
+ 
+}
+</script>
+<article class="posts-container">
+<div class="posts-menu">
+    @Model.Posts.Count() Posts on <script type="text/javascript">let currentDate=new Date();document.write( currentDate.getDate()+"-"+currentDate.getMonth()+"-"+currentDate.getFullYear());</script>
+    <a asp-controller="Posts" asp-action="CreatePost">Create a new post</a>
+</div>
+
     @{
+        var count = 1;
         foreach (var post in Model.Posts)
         {
-            <article class="post-container">
-            <p class="post-author"><b>Posted By:</b> @post.PostedBy.FirstName on @post.PostedBy.LastName @post.PostedAt</p>
-            <img src="@post.ImageUrl" />
-                       <p class="post-message">@post.Message</p>
-            <div class="post-likes">
-                <img class="likes-image" src="/Images/like.png">
-                <img class="likes-image" src="/Images/dislike.png"/>
-            </div>
-            </article>
+            <section class="post-container">
+                <p id="post-@count" class="post-author"><b>Posted By:</b> @post.PostedBy.FirstName on @post.PostedBy.LastName @post.PostedAt</p>
+                <img id="img-@count" src="@post.ImageUrl" />
+                <p id="message-@count" class="post-message">@post.Message</p>
+                <div id="postlike-@count" class="post-likes">
+                    <img class="likes-image" src="/Images/like.png">
+                    <img class="likes-image" src="/Images/dislike.png"/>
+                    <a id="rem-@count" onclick="removePost(this);">Click here to remove this post</a>
+                </div>
+            </section>
+            count++;
         }
     }
-</section>
 
+</article>
 
 
 

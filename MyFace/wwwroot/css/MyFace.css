@@ -30,7 +30,9 @@ nav {
     height: 60px;
 }
 
-
+footer{
+    position: sticky;
+}
 .myface-banner{
     display: flex;
     list-style-type: none;}
@@ -60,13 +62,17 @@ nav {
 
 .post-container {
     text-align: center;
+    
 }
 
 .post-container p{
     text-align: center;
     padding-bottom: .5em;
+    
 }
-
+.posts-container{
+    display:inline;
+}
 .post-likes {
     display: flex;
     flex-direction: row;
