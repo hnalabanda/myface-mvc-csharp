@@ -1,0 +1,20 @@
+﻿@model MyFace.Models.Request.CreatePostRequestModel
+
+@{
+    Layout = "_Layout";
+}
+
+<form method="post" asp-controller="Posts" asp-action="CreatePost">
+    Enter your post <br/>   
+    <textarea name="Message" style="width:100%; height:200px;" placeholder="Enter your posthkjjkj">
+ 
+    </textarea><br/>
+    Enter the URL for the image
+    <input type="text" name="ImageUrl" placeholder="Enter the URL for your imagehjhjhjh"/>
+    Enter the UserId
+    <input type="text" name="UserId"  placeholder="Enter the UserId"/>
+    
+    
+    <br/> 
+    <input type="submit" value="Create" class="myface-createbtn"/>
+</form>

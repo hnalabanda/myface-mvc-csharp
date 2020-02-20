@@ -4,30 +4,55 @@
     Layout = "_Layout";
  
 }
-
-<h1 id="pageheading">MyFace Posts  </h1>
-
 <link rel="stylesheet" type="text/css" href="css/MyFace.css" media="screen" />
 <script>
-function removePost(ele){
-   var index=ele.id.indexOf("-");
-    var elementID=ele.id.substring(index+1);
 
-var element=document.getElementById("post-"+elementID);
-  element.remove();
-  element=document.getElementById("img-"+elementID);
-    element.remove();
-    element=document.getElementById("message-"+elementID);
-      element.remove();
-      element=document.getElementById("postlike-"+elementID);
-        element.remove();
- 
-}
+
 </script>
+
+<h1 id="pageheading">MyFace Posts  </h1>
+    <!-- Modal content -->
+ 
+ 
+    
+    <!-- The Modal -->
+<div id="myModal" class="modal">
+    
+    <!-- Modal content -->
+    <div class="modal-content">
+    
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Create a new post</h2>
+        </div>
+        <div class="modal-body">
+            <form method="post" asp-controller="Posts" asp-action="CreatePost">
+            <textarea name="Message" style="width:100%;height:20rem" placeholder="Enter your post">
+         
+            </textarea><br/>
+            
+                <input type="text" name="ImageUrl" placeholder="Enter the URL for your image"/><br/>
+          
+                <input type="text" name="UserId"  placeholder="Enter the UserId"/>
+            
+            
+                <br/> 
+                <input type="submit" value="Create" class="myface-createbtn"/>
+            </form>
+        </div>
+        
+      
+    </div>
+    
+</div>
+ 
+
 <article class="posts-container">
 <div class="posts-menu">
     @Model.Posts.Count() Posts on <script type="text/javascript">let currentDate=new Date();document.write( currentDate.getDate()+"-"+currentDate.getMonth()+"-"+currentDate.getFullYear());</script>
-    <a asp-controller="Posts" asp-action="CreatePost">Create a new post</a>
+    
+    <a asp-controller="Posts" asp-action="CreatePost" id="myfaceNewpost">Create a new post</a>
+     
 </div>
 
     @{
