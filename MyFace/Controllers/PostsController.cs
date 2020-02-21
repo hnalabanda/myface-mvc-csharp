@@ -10,11 +10,13 @@ namespace MyFace.Controllers
     {
         private readonly IPostsRepo _posts;
         private readonly IInteractionsRepo _interactions;
+        private readonly IUsersRepo _users;
 
-        public PostsController(IPostsRepo posts, IInteractionsRepo interactions)
+        public PostsController(IPostsRepo posts, IInteractionsRepo interactions,IUsersRepo userrepo)
         {
             _posts = posts;
             _interactions = interactions;
+            _users = userrepo;
         }
         
         [HttpGet("")]
@@ -30,7 +32,15 @@ namespace MyFace.Controllers
         {
             return View();
         }
-
+        
+        [HttpGet("GetInfo")]
+        public IActionResult GetUserInfo(int id)
+        {
+            var user= new UsersApiController(_users);
+            var userInfo=  user.GetUser(id);
+            return View(userInfo);
+        }
+        
         [HttpPost("create")]
         public IActionResult CreatePost(CreatePostRequestModel newPost)
         {

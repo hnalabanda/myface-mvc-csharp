@@ -19,7 +19,7 @@ namespace MyFace.Controllers
         }
 
         [Route("{id}")]
-        public ActionResult<UserApiModel> GetUser(int id)
+        public UserApiModel GetUser(int id)
         {
             var user = _users.GetById(id);
             return new UserApiModel(user);

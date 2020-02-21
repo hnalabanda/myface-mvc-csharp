@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MyFace</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" type="text/css" href="~/css/MyFace.css" media="screen" />
     <script type="text/javascript" src="js/site.js"></script>
@@ -13,16 +14,16 @@
         <nav>
             <ul class="myface-banner">
                 <li>
-                    <a class="myface-a" asp-area="" asp-controller="Home" asp-action="Index">MyFace</a>
+                    <a  asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
                 <li>
-                    <a class="myface-a" asp-area="" asp-controller="Posts" asp-action="PostsPage">Posts</a>
+                    <a  asp-area="" asp-controller="Posts" asp-action="PostsPage">Posts</a>
                 </li>
                 <li>
-                    <a class="myface-a" asp-area="" asp-controller="Users" asp-action="UsersPage">Users</a>
+                    <a  asp-area="" asp-controller="Users" asp-action="UsersPage">Users</a>
                 </li>
                 <li>
-                    <a class="myface-a" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    <a  asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                 </li>
             </ul>
           
@@ -30,8 +31,10 @@
     </header>
 
 <main role="main" class="myface-body">
-            @RenderBody()
-    </main>
+  
+    @RenderBody()
+
+</main>
  
 
     <footer >
@@ -41,5 +44,6 @@
     </footer>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+ 
 </body>
 </html>

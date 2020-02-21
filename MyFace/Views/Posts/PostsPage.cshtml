@@ -1,4 +1,5 @@
-﻿@model MyFace.Models.View.PostsViewModel
+﻿@using MyFace.Views.Users
+@model MyFace.Models.View.PostsViewModel
 
 @{
     Layout = "_Layout";
@@ -10,7 +11,7 @@
 
 </script>
 
-<h1 id="pageheading">MyFace Posts  </h1>
+<h1 id="pageheading">MyFace Feed </h1>
     <!-- Modal content -->
  
  
@@ -24,6 +25,7 @@
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>Create a new post</h2>
+        
         </div>
         <div class="modal-body">
             <form method="post" asp-controller="Posts" asp-action="CreatePost">
@@ -45,13 +47,16 @@
     </div>
     
 </div>
- 
+   
+
 
 <article class="posts-container">
 <div class="posts-menu">
     @Model.Posts.Count() Posts on <script type="text/javascript">let currentDate=new Date();document.write( currentDate.getDate()+"-"+currentDate.getMonth()+"-"+currentDate.getFullYear());</script>
     
     <a asp-controller="Posts" asp-action="CreatePost" id="myfaceNewpost">Create a new post</a>
+  
+
      
 </div>
 
@@ -60,7 +65,7 @@
         foreach (var post in Model.Posts)
         {
             <section class="post-container">
-                <p id="post-@count" class="post-author"><b>Posted By:</b> @post.PostedBy.FirstName on @post.PostedBy.LastName @post.PostedAt</p>
+                <p id="post-@count" class="post-author"><b>Posted By:</b> <a  asp-controller="Posts" asp-action="GetUserInfo{@post.PostedBy.Id}"  id="UserInfo-@count">@post.PostedBy.FirstName on @post.PostedBy.LastName</a>  @post.PostedAt</p>
                 <img id="img-@count" src="@post.ImageUrl" />
                 <p id="message-@count" class="post-message">@post.Message</p>
                 <div id="postlike-@count" class="post-likes">

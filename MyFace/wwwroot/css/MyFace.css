@@ -4,14 +4,20 @@
     padding: 0;
 }
 
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: .75em;
+}
+
 a{
     text-decoration: none;
 }
 
 h1{
-    color:steelblue;
+    color:navy;
     text-align: center;
     margin-top: .5rem;
+    font-size: 1.5rem;
 }
 
 li{
@@ -33,14 +39,29 @@ nav {
 footer{
     position: sticky;
 }
+
 .myface-banner{
     display: flex;
-    list-style-type: none;}
+    flex-flow: row wrap;
+    list-style-type: none;
+    justify-content: flex-end;
+    margin:0;
+    background: deepskyblue;
+}
 
-.myface-a {
-  
+.nav-brand {
+    font-size: 1.75em;
+    font-weight: bolder;
     color: white;
 }
+
+.nav-item {
+    margin-top: .65rem;
+    display: flex;
+    flex-flow: row wrap;
+    color: white;
+    font-size: 1.25em;
+} 
 .myface-body{
     display: flex;
     flex-direction: column;
@@ -56,17 +77,27 @@ footer{
     display: flex;
     flex-direction: row;
     align-content: center;
-    justify-content: center;
     padding: 1rem;
+    font-size: 1em;
 }
 
 .posts-menu a{
     margin-left: 1rem;
+    background-color: rgba(254, 197, 30, 0.67);
+    padding: .3rem;
+    border-radius: .5rem;
+    font-weight: bold;
+}
+
+.posts-menu a:hover{
+    background-color: rgba(162, 254, 70, 0.67);
 }
 
 .post-container {
+   background-color: rgba(37, 173, 228, 0.15);
     text-align: center;
-    
+    margin-bottom: 1rem;
+    padding: .5rem;
 }
 
 .post-container p{
@@ -75,7 +106,10 @@ footer{
     
 }
 .posts-container{
-    display:inline;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 95vw;
 }
 .post-likes {
     display: flex;
@@ -92,8 +126,35 @@ footer{
 
 
 @media (min-width: 375px) {
+    .nav-brand {
+        font-size: 1.95em;
+    }
+
+    @media all and (max-width: 800px) {
+        .myface-banner{
+            /* When on medium sized screens, we center it by evenly distributing empty space around items */
+            justify-content: space-around;
+            
+        }
+    }
+
+    .nav-item {
+        margin-top: .65rem;
+        margin-right: .5rem;
+        display: flex;
+        flex-wrap: wrap;
+        color: white;
+        font-size: 1.5em;
+    }
+
     img {
         max-width: 70vw;
+    }
+
+    .posts-container{
+flex-wrap: wrap;
+        align-items: center;
+        max-width: 100vw;
     }
 }
 /* The Modal (background) */
