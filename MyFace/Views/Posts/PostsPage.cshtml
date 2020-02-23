@@ -50,7 +50,7 @@
    
 
 
-<article class="posts-container">
+
 <div class="posts-menu">
     @Model.Posts.Count() Posts on <script type="text/javascript">let currentDate=new Date();document.write( currentDate.getDate()+"-"+currentDate.getMonth()+"-"+currentDate.getFullYear());</script>
     
@@ -59,19 +59,20 @@
 
      
 </div>
-
+<article class="posts-container">
     @{
         var count = 1;
         foreach (var post in Model.Posts)
-        {
+        { 
             <section class="post-container">
                 <p id="post-@count" class="post-author"><b>Posted By:</b> <a  asp-controller="Posts" asp-action="GetUserInfo{@post.PostedBy.Id}"  id="UserInfo-@count">@post.PostedBy.FirstName on @post.PostedBy.LastName</a>  @post.PostedAt</p>
                 <img id="img-@count" src="@post.ImageUrl" />
                 <p id="message-@count" class="post-message">@post.Message</p>
                 <div id="postlike-@count" class="post-likes">
-                    <img class="likes-image" src="/Images/like.png">
-                    <img class="likes-image" src="/Images/dislike.png"/>
-                    <a id="rem-@count" onclick="removePost(this);">Click here to remove this post</a>
+                   
+                    <img class="likes-image" src="/Images/dislike.png" style="margin-top: .1rem"/>
+                     <img class="likes-image" src="/Images/like.png">
+                    <a id="rem-@count" class="buttonclass" onclick="removePost(this);">Remove post</a>
                 </div>
             </section>
             count++;

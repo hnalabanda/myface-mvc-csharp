@@ -5,30 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MyFace</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" type="text/css" href="~/css/MyFace.css" media="screen" />
     <script type="text/javascript" src="js/site.js"></script>
 </head>
 <body >
-    <header>
-        <nav>
-            <ul class="myface-banner">
-                <li>
-                    <a  asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                </li>
-                <li>
-                    <a  asp-area="" asp-controller="Posts" asp-action="PostsPage">Posts</a>
-                </li>
-                <li>
-                    <a  asp-area="" asp-controller="Users" asp-action="UsersPage">Users</a>
-                </li>
-                <li>
-                    <a  asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                </li>
-            </ul>
-          
-        </nav>
-    </header>
+<header>
+    <div>
+        <a asp-area="" asp-controller="Home" asp-action="Index" class="logoFont">MyFace</a>
+         <nav>
+                <ul class="myface-banner">
+        
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="navbarcolor">Home</a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="Posts" asp-action="PostsPage" class="navbarcolor">Posts</a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="Users" asp-action="UsersPage" class="navbarcolor">Users</a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="Privacy" class="navbarcolor">Privacy</a>
+                    </li>
+                </ul>
+        
+            </nav>
+    </div>
+   
+   
+    <div class="blueband"></div>
+</header>
 
 <main role="main" class="myface-body">
   
